@@ -10,7 +10,7 @@
 Retromatic/
 ├── README.md
 ├── backend/
-│   ├── 2048.java
+│   ├── deux.java
 │   ├── hangman.java
 │   ├── main.java
 │   ├── memory.java
