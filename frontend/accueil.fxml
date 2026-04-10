@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.*?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="backend.AccueilController"
+           stylesheets="@accueil.css"
+           styleClass="root-splash"
+           prefWidth="900" prefHeight="660">
+
+    <Pane mouseTransparent="true">
+        <Circle centerX="750" centerY="100" radius="180" styleClass="deco-circle"/>
+        <Circle centerX="100" centerY="560" radius="110" styleClass="deco-circle-sm"/>
+        <Circle centerX="450" centerY="330" radius="300" styleClass="deco-ring"/>
+    </Pane>
+
+    <VBox alignment="CENTER" spacing="28" styleClass="splash-content">
+        <Label text="— ARCADE COLLECTION —" styleClass="sub-label"/>
+        <Label text="RETROMATIC" styleClass="main-title"/>
+        <Label text="4 JEUX CLASSIQUES REVISITÉS" styleClass="tag-label"/>
+        <HBox alignment="CENTER" spacing="12">
+            <Region styleClass="sep-line"/>
+            <Circle radius="4" styleClass="sep-dot"/>
+            <Region styleClass="sep-line"/>
+        </HBox>
+        <Button fx:id="btnEntrer" text="ENTRER" styleClass="btn-enter"
+                onAction="#handleEntrer"/>
+    </VBox>
+
+</StackPane>

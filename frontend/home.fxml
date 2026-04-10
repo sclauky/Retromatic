@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="backend.HomeController"
+            stylesheets="@accueil.css"
+            styleClass="root-home"
+            prefWidth="900" prefHeight="660">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" styleClass="header" spacing="20">
+            <Label text="RETROMATIC" styleClass="header-logo"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="ARCADE COLLECTION" styleClass="header-sub"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox alignment="CENTER" spacing="32" styleClass="center-wrap">
+            <Label text="CHOISISSEZ VOTRE JEU" styleClass="section-title"/>
+            <GridPane styleClass="game-grid" hgap="24" vgap="24" alignment="CENTER">
+
+                <VBox GridPane.columnIndex="0" GridPane.rowIndex="0"
+                      styleClass="game-card" alignment="CENTER" spacing="14"
+                      onMouseClicked="#openFusion">
+                    <Circle radius="38" styleClass="card-icon"/>
+                    <Label text="FUSION" styleClass="card-title"/>
+                    <Label text="Atteignez 2048" styleClass="card-sub"/>
+                </VBox>
+
+                <VBox GridPane.columnIndex="1" GridPane.rowIndex="0"
+                      styleClass="game-card" alignment="CENTER" spacing="14"
+                      onMouseClicked="#openHangman">
+                    <Circle radius="38" styleClass="card-icon"/>
+                    <Label text="PENDU" styleClass="card-title"/>
+                    <Label text="Devinez le mot" styleClass="card-sub"/>
+                </VBox>
+
+                <VBox GridPane.columnIndex="0" GridPane.rowIndex="1"
+                      styleClass="game-card" alignment="CENTER" spacing="14"
+                      onMouseClicked="#openMemory">
+                    <Circle radius="38" styleClass="card-icon"/>
+                    <Label text="MEMORY" styleClass="card-title"/>
+                    <Label text="Trouvez les paires" styleClass="card-sub"/>
+                </VBox>
+
+                <VBox GridPane.columnIndex="1" GridPane.rowIndex="1"
+                      styleClass="game-card" alignment="CENTER" spacing="14"
+                      onMouseClicked="#openSudoku">
+                    <Circle radius="38" styleClass="card-icon"/>
+                    <Label text="SUDOKU" styleClass="card-title"/>
+                    <Label text="Remplissez la grille" styleClass="card-sub"/>
+                </VBox>
+
+            </GridPane>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER" styleClass="footer">
+            <Label text="RETROMATIC © 2025" styleClass="footer-label"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

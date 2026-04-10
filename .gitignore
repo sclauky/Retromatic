@@ -1,0 +1,13 @@
+# JDK
+jdk-17.0.12/
+
+# VS Code
+.vscode/
+
+# Compiled
+*.class
+bin/
+out/
+
+# Database
+*.db
