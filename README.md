@@ -10,11 +10,33 @@
 Retromatic/
 ├── README.md
 ├── backend/
-│   ├── deux.java
-│   ├── hangman.java
+│   ├── AccueilController.java
+│   ├── HomeController.java
 │   ├── main.java
-│   ├── memory.java
-│   └── sudoku.java
+│   ├── fusion/
+│   │   ├── FusionController.java
+│   │   └── FusionModel.java
+│   ├── hangman/
+│   │   ├── HangmanController.java
+│   │   └── HangmanModel.java
+│   ├── memory/
+│   │   ├── MemoryController.java
+│   │   └── MemoryModel.java
+│   └── sudoku/
+│       ├── SudokuController.java
+│       └── SudokuModel.java
+├── database/
 └── frontend/
-	└── style.css
+    ├── accueil.css
+    ├── accueil.fxml
+    ├── fusion.css
+    ├── fusion.fxml
+    ├── hangman.css
+    ├── hangman.fxml
+    ├── home.css
+    ├── home.fxml
+    ├── memory.css
+    ├── memory.fxml
+    ├── sudoku.css
+    └── sudoku.fxml
 ```
