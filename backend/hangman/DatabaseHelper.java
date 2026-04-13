@@ -13,27 +13,34 @@ public class DatabaseHelper {
     private static final String DB_PATH = "database/hangman.db";
     
     // Créer la base de données et la table si elle n'existe pas
-    public static void initDatabase() {
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + DB_PATH)) {
-            String createTable = """
-                CREATE TABLE IF NOT EXISTS words (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    word TEXT NOT NULL UNIQUE
-                )
-            """;
-            
-            Statement stmt = conn.createStatement();
-            stmt.execute(createTable);
-            
-            // Ajouter des mots par défaut si la table est vide
-            if (getWordCount(conn) == 0) {
-                addDefaultWords(conn);
-            }
-            
-        } catch (Exception e) {
-            System.err.println("Erreur lors de l'initialisation de la base de données : " + e.getMessage());
-        }
+public static void initDatabase() {
+    new java.io.File("database").mkdirs();
+
+    try {
+        Class.forName("org.sqlite.JDBC");
+    } catch (ClassNotFoundException e) {
+        System.err.println("Driver SQLite introuvable : " + e.getMessage());
+        return;
     }
+
+    try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + DB_PATH)) {
+        String createTable = """
+            CREATE TABLE IF NOT EXISTS words (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                word TEXT NOT NULL UNIQUE
+            )
+        """;
+        Statement stmt = conn.createStatement();
+        stmt.execute(createTable);
+
+        if (getWordCount(conn) == 0) {
+            addDefaultWords(conn);
+        }
+
+    } catch (Exception e) {
+        System.err.println("Erreur BDD : " + e.getMessage());
+    }
+}
     
     // Compter le nombre de mots dans la base
     private static int getWordCount(Connection conn) throws Exception {
@@ -84,18 +91,4 @@ public class DatabaseHelper {
         return words;
     }
     
-    // Ajouter un mot personnalisé
-    public static boolean addWord(String word) {
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + DB_PATH)) {
-            String sql = "INSERT OR IGNORE INTO words (word) VALUES (?)";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, word.toUpperCase());
-            int affected = pstmt.executeUpdate();
-            return affected > 0;
-            
-        } catch (Exception e) {
-            System.err.println("Erreur lors de l'ajout du mot : " + e.getMessage());
-            return false;
-        }
-    }
 }
