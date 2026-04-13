@@ -4,9 +4,13 @@ jdk-17.0.12/
 # VS Code
 .vscode/
 
+# Eclipse/Java project config
+.classpath
+.project
+bin/
+
 # Compiled
 *.class
-bin/
 out/
 
 # Database

@@ -4,12 +4,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.shape.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
+<BorderPane fx:id="rootPane"
+            xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="backend.HomeController"
             stylesheets="@accueil.css"
             styleClass="root-home"
-            prefWidth="900" prefHeight="660">
+            prefWidth="900" prefHeight="660"
+            >
 
     <top>
         <HBox alignment="CENTER_LEFT" styleClass="header" spacing="20">

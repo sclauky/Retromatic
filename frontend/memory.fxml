@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="backend.memory.MemoryController"
+            stylesheets="@memory.css"
+            styleClass="root-memory"
+            prefWidth="900" prefHeight="660">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" styleClass="mem-header" spacing="20">
+            <Button text="←" styleClass="btn-back" onAction="#handleBack"/>
+            <Label text="MEMORY" styleClass="mem-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="movesLabel" text="COUPS : 0" styleClass="stat-label"/>
+            <Label text="  |  " styleClass="stat-sep"/>
+            <Label fx:id="pairsLabel" text="PAIRES : 0 / 8" styleClass="stat-label"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox alignment="CENTER" spacing="20" styleClass="mem-center">
+            <Label fx:id="statusLabel" text="" styleClass="status-label"/>
+            <GridPane fx:id="cardGrid" hgap="14" vgap="14" alignment="CENTER"/>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER" styleClass="mem-footer" spacing="0">
+            <Button text="REJOUER" styleClass="btn-restart" onAction="#handleRestart"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>
