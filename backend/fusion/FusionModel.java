@@ -11,6 +11,8 @@ public class FusionModel {
     private int score = 0;
     private final Random random = new Random();
 
+    private boolean[][] merged = new boolean[SIZE][SIZE];
+
     public FusionModel() {
         reset();
     }
@@ -20,6 +22,7 @@ public class FusionModel {
         for (int r = 0; r < SIZE; r++) {
             for (int c = 0; c < SIZE; c++) {
                 grid[r][c] = 0;
+                merged[r][c] = false;
             }
         }
         addRandomTile();
@@ -42,9 +45,7 @@ public class FusionModel {
         List<int[]> empty = new ArrayList<>();
         for (int r = 0; r < SIZE; r++) {
             for (int c = 0; c < SIZE; c++) {
-                if (grid[r][c] == 0) {
-                    empty.add(new int[]{r, c});
-                }
+                if (grid[r][c] == 0) empty.add(new int[]{r, c});
             }
         }
         if (empty.isEmpty()) return;
@@ -57,6 +58,10 @@ public class FusionModel {
     }
 
     public boolean move(Direction dir) {
+        for (int r = 0; r < SIZE; r++)
+            for (int c = 0; c < SIZE; c++)
+                merged[r][c] = false;
+
         boolean moved = false;
         switch (dir) {
             case LEFT -> moved = moveLeft();
@@ -64,9 +69,7 @@ public class FusionModel {
             case UP -> moved = moveUp();
             case DOWN -> moved = moveDown();
         }
-        if (moved) {
-            addRandomTile();
-        }
+        if (moved) addRandomTile();
         return moved;
     }
 
@@ -74,12 +77,10 @@ public class FusionModel {
         boolean moved = false;
         for (int r = 0; r < SIZE; r++) {
             int[] line = grid[r];
-            int[] merged = mergeLine(compactLine(line));
+            int[] mergedLine = mergeLine(compactLine(line), r, true);
             for (int c = 0; c < SIZE; c++) {
-                if (grid[r][c] != merged[c]) {
-                    moved = true;
-                }
-                grid[r][c] = merged[c];
+                if (grid[r][c] != mergedLine[c]) moved = true;
+                grid[r][c] = mergedLine[c];
             }
         }
         return moved;
@@ -89,13 +90,11 @@ public class FusionModel {
         boolean moved = false;
         for (int r = 0; r < SIZE; r++) {
             int[] line = reverse(grid[r]);
-            int[] merged = mergeLine(compactLine(line));
-            merged = reverse(merged);
+            int[] mergedLine = mergeLine(compactLine(line), r, false);
+            mergedLine = reverse(mergedLine);
             for (int c = 0; c < SIZE; c++) {
-                if (grid[r][c] != merged[c]) {
-                    moved = true;
-                }
-                grid[r][c] = merged[c];
+                if (grid[r][c] != mergedLine[c]) moved = true;
+                grid[r][c] = mergedLine[c];
             }
         }
         return moved;
@@ -106,12 +105,10 @@ public class FusionModel {
         for (int c = 0; c < SIZE; c++) {
             int[] col = new int[SIZE];
             for (int r = 0; r < SIZE; r++) col[r] = grid[r][c];
-            int[] merged = mergeLine(compactLine(col));
+            int[] mergedCol = mergeLine(compactLine(col), c, true);
             for (int r = 0; r < SIZE; r++) {
-                if (grid[r][c] != merged[r]) {
-                    moved = true;
-                }
-                grid[r][c] = merged[r];
+                if (grid[r][c] != mergedCol[r]) moved = true;
+                grid[r][c] = mergedCol[r];
             }
         }
         return moved;
@@ -123,13 +120,11 @@ public class FusionModel {
             int[] col = new int[SIZE];
             for (int r = 0; r < SIZE; r++) col[r] = grid[r][c];
             col = reverse(col);
-            int[] merged = mergeLine(compactLine(col));
-            merged = reverse(merged);
+            int[] mergedCol = mergeLine(compactLine(col), c, false);
+            mergedCol = reverse(mergedCol);
             for (int r = 0; r < SIZE; r++) {
-                if (grid[r][c] != merged[r]) {
-                    moved = true;
-                }
-                grid[r][c] = merged[r];
+                if (grid[r][c] != mergedCol[r]) moved = true;
+                grid[r][c] = mergedCol[r];
             }
         }
         return moved;
@@ -138,24 +133,25 @@ public class FusionModel {
     private int[] compactLine(int[] line) {
         int[] result = new int[SIZE];
         int idx = 0;
-        for (int value : line) {
-            if (value != 0) {
-                result[idx++] = value;
-            }
-        }
+        for (int value : line) if (value != 0) result[idx++] = value;
         return result;
     }
 
-    private int[] mergeLine(int[] line) {
+    private int[] mergeLine(int[] line, int fixed, boolean normalOrder) {
         int[] result = new int[SIZE];
         int idx = 0;
         for (int i = 0; i < SIZE; i++) {
             if (line[i] == 0) continue;
             if (i < SIZE - 1 && line[i] == line[i + 1]) {
-                int merged = line[i] * 2;
-                result[idx++] = merged;
-                score += merged;
-                i++; // skip next
+                int v = line[i] * 2;
+                result[idx] = v;
+                score += v;
+
+                if (normalOrder) merged[fixed][idx] = true;
+                else merged[idx][fixed] = true;
+
+                idx++;
+                i++;
             } else {
                 result[idx++] = line[i];
             }
@@ -165,36 +161,32 @@ public class FusionModel {
 
     private int[] reverse(int[] line) {
         int[] res = new int[SIZE];
-        for (int i = 0; i < SIZE; i++) {
-            res[i] = line[SIZE - 1 - i];
-        }
+        for (int i = 0; i < SIZE; i++) res[i] = line[SIZE - 1 - i];
         return res;
     }
 
     public boolean hasWon() {
-        for (int r = 0; r < SIZE; r++) {
-            for (int c = 0; c < SIZE; c++) {
+        for (int r = 0; r < SIZE; r++)
+            for (int c = 0; c < SIZE; c++)
                 if (grid[r][c] == 2048) return true;
-            }
-        }
         return false;
     }
 
     public boolean hasMoves() {
-        // empty cell
-        for (int r = 0; r < SIZE; r++) {
-            for (int c = 0; c < SIZE; c++) {
+        for (int r = 0; r < SIZE; r++)
+            for (int c = 0; c < SIZE; c++)
                 if (grid[r][c] == 0) return true;
-            }
-        }
-        // adjacent equal
-        for (int r = 0; r < SIZE; r++) {
+
+        for (int r = 0; r < SIZE; r++)
             for (int c = 0; c < SIZE; c++) {
                 int v = grid[r][c];
                 if (r + 1 < SIZE && grid[r + 1][c] == v) return true;
                 if (c + 1 < SIZE && grid[r][c + 1] == v) return true;
             }
-        }
         return false;
+    }
+
+    public boolean wasMerged(int r, int c) {
+        return merged[r][c];
     }
 }

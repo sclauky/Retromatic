@@ -8,6 +8,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.animation.ScaleTransition;
+import javafx.animation.TranslateTransition;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.util.Duration;
+import javafx.stage.Stage;
 
 public class FusionController {
 
@@ -57,6 +64,15 @@ public class FusionController {
         javafx.application.Platform.runLater(() -> root.requestFocus());
     }
 
+    @FXML
+    private void handleBack() throws Exception {
+        Parent homeRoot = FXMLLoader.load(getClass().getResource("/frontend/home.fxml"));
+        Stage stage = (Stage) root.getScene().getWindow();
+        stage.setScene(new Scene(homeRoot, 900, 660));
+        stage.setFullScreen(true);
+        stage.setFullScreenExitHint("");
+    }
+
     private void updateView() {
         grid.getChildren().clear();
         int[][] g = model.getGrid();
@@ -67,6 +83,10 @@ public class FusionController {
                 int value = g[r][c];
                 StackPane cell = createTile(value);
                 grid.add(cell, c, r);
+
+                if (model.wasMerged(r, c)) {
+                    animatePop(cell);
+                }
             }
         }
     }
@@ -81,11 +101,28 @@ public class FusionController {
         label.getStyleClass().add("tile-label");
         pane.setAlignment(Pos.CENTER);
         pane.getChildren().add(label);
+
+        TranslateTransition tt = new TranslateTransition(Duration.millis(90), pane);
+        tt.setFromX(0);
+        tt.setToX(0);
+        tt.play();
+
         return pane;
     }
 
     private void showGameOver() {
-        gameOverLabel.setText("GAME OVER");
+        overlay.getStyleClass().add("overlay-visible");
         overlay.setVisible(true);
+    }
+
+    private void animatePop(StackPane tile) {
+        ScaleTransition st = new ScaleTransition(Duration.millis(120), tile);
+        st.setFromX(1.0);
+        st.setFromY(1.0);
+        st.setToX(1.18);
+        st.setToY(1.18);
+        st.setAutoReverse(true);
+        st.setCycleCount(2);
+        st.play();
     }
 }

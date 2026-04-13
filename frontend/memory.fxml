@@ -13,12 +13,12 @@
 
     <top>
         <HBox alignment="CENTER_LEFT" styleClass="mem-header" spacing="20">
-            <Button text="←" styleClass="btn-back" onAction="#handleBack"/>
             <Label text="MEMORY" styleClass="mem-title"/>
             <Region HBox.hgrow="ALWAYS"/>
             <Label fx:id="movesLabel" text="COUPS : 0" styleClass="stat-label"/>
             <Label text="  |  " styleClass="stat-sep"/>
             <Label fx:id="pairsLabel" text="PAIRES : 0 / 8" styleClass="stat-label"/>
+            <Button text="Accueil" styleClass="btn-home-memory" onAction="#handleBack"/>
         </HBox>
     </top>
 

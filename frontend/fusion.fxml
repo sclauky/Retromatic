@@ -13,11 +13,13 @@
             fx:id="root">
 
     <top>
-        <HBox spacing="20" alignment="CENTER" BorderPane.alignment="CENTER">
+        <HBox spacing="20" alignment="CENTER_LEFT" BorderPane.alignment="CENTER">
             <children>
                 <Label text="2048" styleClass="title"/>
                 <Label fx:id="scoreLabel" text="Score : 0" styleClass="score"/>
                 <Button text="Nouvelle partie" onAction="#handleNewGame"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Accueil" styleClass="btn-home-fusion" onAction="#handleBack"/>
             </children>
             <padding>
                 <Insets top="20" right="20" bottom="20" left="20"/>

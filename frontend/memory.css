@@ -72,6 +72,28 @@
     -fx-text-fill: #1C1018;
 }
 
+.btn-home-memory {
+    -fx-background-color: #7ECFB3;
+    -fx-text-fill: #1C1018;
+    -fx-font-size: 12px;
+    -fx-font-family: 'Impact', sans-serif;
+    -fx-letter-spacing: 2px;
+    -fx-cursor: hand;
+    -fx-border-color: #7ECFB3;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-padding: 6 16 6 16;
+}
+
+.btn-home-memory:hover {
+    -fx-background-color: #A8E4D0;
+}
+
+.btn-home-memory:pressed {
+    -fx-background-color: #5FA68D;
+}
+
 .btn-restart {
     -fx-background-color: #7ECFB3;
     -fx-text-fill: #1C1018;
