@@ -12,6 +12,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -138,17 +139,12 @@ private void drawBack(Canvas canvas) {
     GraphicsContext gc = canvas.getGraphicsContext2D();
     gc.clearRect(0, 0, CARD_W, CARD_H);
 
-    if (backImage != null && !backImage.isError()) {
-        gc.drawImage(backImage, 2, 2, CARD_W - 4, CARD_H - 4);
+    if (backImage != null) {
+        gc.drawImage(backImage, 0, 0, CARD_W, CARD_H);
     } else {
-        gc.setFill(Color.web("#0F0A0E"));
-        gc.fillRoundRect(2, 2, CARD_W - 4, CARD_H - 4, 16, 16);
+        gc.setFill(Color.DARKGRAY);
+        gc.fillRect(0, 0, CARD_W, CARD_H);
     }
-
-    gc.setStroke(Color.web("#7ECFB3"));
-    gc.setLineWidth(2);
-    gc.strokeRoundRect(2, 2, CARD_W - 4, CARD_H - 4, 16, 16);
-    
 }
 
 private void drawFront(Canvas canvas, MemoryModel.Card card) {
@@ -292,5 +288,8 @@ private void drawFront(Canvas canvas, MemoryModel.Card card) {
         Parent root = FXMLLoader.load(getClass().getResource("/frontend/home.fxml"));
         Stage stage = (Stage) cardGrid.getScene().getWindow();
         stage.setScene(new Scene(root, 900, 660));
+        stage.setFullScreen(true);
+        stage.setFullScreenExitHint("");
+        stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
     }
 }

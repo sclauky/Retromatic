@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="backend.fusion.FusionController"
+            stylesheets="@fusion.css"
+            onKeyPressed="#handleKeyPressed"
+            prefWidth="600" prefHeight="700"
+            fx:id="root">
+
+    <top>
+        <HBox spacing="20" alignment="CENTER" BorderPane.alignment="CENTER">
+            <children>
+                <Label text="2048" styleClass="title"/>
+                <Label fx:id="scoreLabel" text="Score : 0" styleClass="score"/>
+                <Button text="Nouvelle partie" onAction="#handleNewGame"/>
+            </children>
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+        </HBox>
+    </top>
+
+    <center>
+        <GridPane fx:id="grid" hgap="10" vgap="10" alignment="CENTER">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+        </GridPane>
+    </center>
+
+    <bottom>
+        <Label fx:id="statusLabel" BorderPane.alignment="CENTER" alignment="CENTER"
+               styleClass="status" prefHeight="40"/>
+    </bottom>
+
+</BorderPane>

@@ -13,8 +13,12 @@ public class HomeController {
     private BorderPane rootPane;
 
     @FXML
-    private void openFusion() {
-        System.out.println("Fusion (2048) - à implémenter");
+    private void openFusion() throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/frontend/fusion.fxml"));
+        Stage stage = (Stage) rootPane.getScene().getWindow();
+        stage.setScene(new Scene(root, 900, 660));
+        stage.setFullScreen(true);
+        stage.setFullScreenExitHint(null);
     }
 
     @FXML
@@ -27,6 +31,8 @@ public class HomeController {
         Parent root = FXMLLoader.load(getClass().getResource("/frontend/memory.fxml"));
         Stage stage = (Stage) rootPane.getScene().getWindow();
         stage.setScene(new Scene(root, 900, 660));
+        stage.setFullScreen(true);
+        stage.setFullScreenExitHint(null);
     }
 
     @FXML

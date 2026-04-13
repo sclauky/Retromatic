@@ -17,5 +17,7 @@ public class AccueilController {
         Parent root = FXMLLoader.load(getClass().getResource("/frontend/home.fxml"));
         Stage stage = (Stage) btnEntrer.getScene().getWindow();
         stage.setScene(new Scene(root, 900, 660));
+        stage.setFullScreen(true);
+        stage.setFullScreenExitHint("");
     }
 }
