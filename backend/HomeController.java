@@ -42,7 +42,12 @@ private void openHangman() throws Exception {
     }
 
     @FXML
-    private void openSudoku() {
-        System.out.println("Sudoku - à implémenter");
-    }
+private void openSudoku() throws Exception {
+    Parent root = FXMLLoader.load(getClass().getResource("/frontend/sudoku.fxml"));
+    Stage stage = (Stage) rootPane.getScene().getWindow();
+    stage.setScene(new Scene(root, 900, 660));
+    stage.setFullScreen(true);
+    stage.setFullScreenExitHint("");
+    stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+}
 }
