@@ -39,6 +39,20 @@
     -fx-padding: 20 40 10 40;
 }
 
+.mem-center-stack {
+    -fx-alignment: center;
+}
+
+.bg-gattaca {
+    -fx-text-fill: #7ECFB3;
+    -fx-opacity: 0.07;
+    -fx-font-size: 190px;
+    -fx-font-family: 'Impact', sans-serif;
+    -fx-letter-spacing: 24px;
+    -fx-padding: 0 0 0 12;
+    -fx-translate-y: 16px;
+}
+
 .status-label {
     -fx-text-fill: #7ECFB3;
     -fx-font-size: 20px;

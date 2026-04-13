@@ -23,10 +23,14 @@
     </top>
 
     <center>
-        <VBox alignment="CENTER" spacing="20" styleClass="mem-center">
-            <Label fx:id="statusLabel" text="" styleClass="status-label"/>
-            <GridPane fx:id="cardGrid" hgap="14" vgap="14" alignment="CENTER"/>
-        </VBox>
+        <StackPane styleClass="mem-center-stack">
+            <Label text="GATTACA" styleClass="bg-gattaca" StackPane.alignment="CENTER_LEFT"/>
+            <Label text="GATTACA" styleClass="bg-gattaca" StackPane.alignment="CENTER_RIGHT"/>
+            <VBox alignment="CENTER" spacing="20" styleClass="mem-center">
+                <Label fx:id="statusLabel" text="" styleClass="status-label"/>
+                <GridPane fx:id="cardGrid" hgap="14" vgap="14" alignment="CENTER"/>
+            </VBox>
+        </StackPane>
     </center>
 
     <bottom>
