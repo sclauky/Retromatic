@@ -26,11 +26,22 @@
     </top>
 
     <center>
-        <GridPane fx:id="grid" hgap="10" vgap="10" alignment="CENTER">
-            <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
-            </padding>
-        </GridPane>
+        <StackPane fx:id="gameArea">
+
+            <GridPane fx:id="grid" hgap="10" vgap="10" alignment="CENTER">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+            </GridPane>
+
+            <StackPane fx:id="overlay" visible="false" styleClass="overlay">
+                <VBox alignment="CENTER" spacing="20">
+                    <Label fx:id="gameOverLabel" text="GAME OVER" styleClass="gameover-text"/>
+                    <Button text="Rejouer" onAction="#handleNewGame" styleClass="replay-button"/>
+                </VBox>
+            </StackPane>
+
+        </StackPane>
     </center>
 
     <bottom>

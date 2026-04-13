@@ -56,3 +56,19 @@
 .tile-512  { -fx-background-color: #edc850; -fx-text-fill: #f9f6f2; }
 .tile-1024 { -fx-background-color: #edc53f; -fx-text-fill: #f9f6f2; }
 .tile-2048 { -fx-background-color: #edc22e; -fx-text-fill: #f9f6f2; }
+
+.overlay {
+    -fx-background-color: rgba(0, 0, 0, 0.6);
+    -fx-alignment: center;
+}
+
+.gameover-text {
+    -fx-font-size: 60px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.replay-button {
+    -fx-font-size: 24px;
+    -fx-padding: 10 20;
+}
