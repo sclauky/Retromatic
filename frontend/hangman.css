@@ -1,0 +1,161 @@
+/* === FOND ET CONTENEUR PRINCIPAL === */
+.root-pane {
+    -fx-background-color: linear-gradient(to bottom, #1C1018 0%, #261A22 100%);
+    -fx-padding: 20px;
+}
+
+/* === TITRE === */
+.title-label {
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 42px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #F5C94E;
+    -fx-effect: dropshadow(gaussian, rgba(245, 201, 78, 0.6), 10, 0.5, 0, 0);
+}
+
+.top-header-row {
+    -fx-alignment: center-left;
+    -fx-spacing: 16px;
+}
+
+.btn-home-hangman {
+    -fx-background-color: transparent;
+    -fx-text-fill: #F5C94E;
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border-color: #F5C94E;
+    -fx-border-width: 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-padding: 9px 20px;
+    -fx-cursor: hand;
+}
+
+.btn-home-hangman:hover {
+    -fx-background-color: #F5C94E;
+    -fx-text-fill: #1C1018;
+}
+
+.btn-home-hangman:pressed {
+    -fx-background-color: #E8472A;
+    -fx-border-color: #E8472A;
+    -fx-text-fill: #F2EBE0;
+}
+
+/* === LABELS D'INFORMATION === */
+.tries-label {
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 18px;
+    -fx-text-fill: #F2EBE0;
+    -fx-padding: 10px;
+}
+
+.status-label {
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #7ECFB3;
+    -fx-padding: 15px;
+    min-height: 40px;
+}
+
+/* === CANVAS (ZONE DE DESSIN DU PENDU) === */
+.hangman-canvas {
+    -fx-background-color: rgba(28, 16, 24, 0.5);
+    -fx-border-color: #7ECFB3;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+/* === MOT À DEVINER === */
+.word-label {
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 48px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #F2EBE0;
+    -fx-letter-spacing: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(126, 207, 179, 0.4), 8, 0.5, 0, 0);
+}
+
+/* === CONTENEUR DES BOUTONS LETTRES === */
+.letter-buttons-pane {
+    -fx-padding: 20px;
+    -fx-alignment: center;
+    max-width: 600px;
+}
+
+/* === BOUTONS LETTRES (A-Z) === */
+.letter-button {
+    -fx-background-color: #261A22;
+    -fx-text-fill: #F2EBE0;
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-border-color: #7ECFB3;
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.3, 0, 2);
+}
+
+.letter-button:hover {
+    -fx-background-color: #3a2832;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-effect: dropshadow(gaussian, rgba(126, 207, 179, 0.6), 8, 0.5, 0, 0);
+}
+
+.letter-button:disabled {
+    -fx-opacity: 0.5;
+    -fx-cursor: default;
+}
+
+/* === BOUTON LETTRE CORRECTE === */
+.letter-correct {
+    -fx-background-color: #7ECFB3 !important;
+    -fx-text-fill: #1C1018 !important;
+    -fx-border-color: #7ECFB3 !important;
+}
+
+/* === BOUTON LETTRE INCORRECTE === */
+.letter-wrong {
+    -fx-background-color: #E8472A !important;
+    -fx-text-fill: #F2EBE0 !important;
+    -fx-border-color: #E8472A !important;
+}
+
+/* === BOUTON DE CONTRÔLE (REJOUER) === */
+.restart-button {
+    -fx-background-color: #261A22;
+    -fx-text-fill: #F5C94E;
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-border-color: #F5C94E;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 12px 30px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 6, 0.3, 0, 2);
+}
+
+.restart-button:hover {
+    -fx-background-color: #F5C94E;
+    -fx-text-fill: #1C1018;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-effect: dropshadow(gaussian, rgba(245, 201, 78, 0.7), 10, 0.5, 0, 0);
+}
+
+/* === BOÎTES DE DISPOSITION === */
+.top-box, .center-box, .bottom-box {
+    -fx-padding: 20px;
+}
+
+.control-buttons {
+    -fx-padding: 20px 0 0 0;
+}

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="backend.hangman.HangmanController"
+            styleClass="root-pane"
+            stylesheets="@hangman.css">
+
+    <!-- Haut : Titre et stats -->
+    <top>
+        <VBox alignment="CENTER" spacing="15" styleClass="top-box">
+            <HBox alignment="CENTER_LEFT" styleClass="top-header-row">
+                <Label text="JEU DU PENDU" styleClass="title-label"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Accueil" onAction="#handleBack" styleClass="btn-home-hangman"/>
+            </HBox>
+            <Label fx:id="triesLabel" text="ESSAIS RESTANTS : 6 / 6" styleClass="tries-label"/>
+            <Label fx:id="statusLabel" styleClass="status-label"/>
+        </VBox>
+    </top>
+
+    <!-- Centre : Canvas pendu + Mot à deviner -->
+    <center>
+        <VBox alignment="CENTER" spacing="30" styleClass="center-box">
+            <Canvas fx:id="hangmanCanvas" width="400" height="400" styleClass="hangman-canvas"/>
+            <Label fx:id="wordLabel" text="_ _ _ _ _" styleClass="word-label"/>
+        </VBox>
+    </center>
+
+    <!-- Bas : Boutons lettres + lettres incorrectes -->
+    <bottom>
+        <VBox alignment="CENTER" spacing="20" styleClass="bottom-box">
+            <FlowPane fx:id="letterButtons" styleClass="letter-buttons-pane"/>
+            <VBox fx:id="wrongLettersBox" alignment="CENTER"/>
+            
+            <!-- Boutons de contrôle -->
+            <HBox alignment="CENTER" spacing="20" styleClass="control-buttons">
+                <Button text="REJOUER" onAction="#handleRestart" styleClass="restart-button"/>
+            </HBox>
+        </VBox>
+    </bottom>
+
+</BorderPane>
