@@ -16,4 +16,4 @@ out/
 # Database
 *.db
 
-*/lib/
+.env

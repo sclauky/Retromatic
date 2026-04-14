@@ -16,22 +16,31 @@ import javafx.scene.Scene;
 import javafx.util.Duration;
 import javafx.stage.Stage;
 
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
 public class FusionController {
 
     @FXML private BorderPane root;
     @FXML private GridPane grid;
     @FXML private Label scoreLabel;
     @FXML private Label statusLabel;
+    @FXML private Label leaderboardLabel;
     @FXML private StackPane overlay;
     @FXML private Label gameOverLabel;
 
     private FusionModel model;
+    private final FusionLeaderboardService leaderboardService = new FusionLeaderboardService();
+    private boolean scoreSubmittedForCurrentGame = false;
 
     @FXML
     public void initialize() {
         model = new FusionModel();
+        scoreSubmittedForCurrentGame = false;
         updateView();
         statusLabel.setText("Utilise les flèches pour jouer");
+        leaderboardLabel.setText("Top 6 en chargement...");
+        refreshLeaderboardAsync();
         javafx.application.Platform.runLater(() -> root.requestFocus());
     }
 
@@ -54,7 +63,7 @@ public class FusionController {
                 statusLabel.setText("2048 atteint !");
             } else if (!model.hasMoves()) {
                 showOverlay("GAME OVER");
-                statusLabel.setText("");
+                submitScoreAndRefreshLeaderboard("Défaite");
             } else {
                 statusLabel.setText("");
             }
@@ -64,6 +73,7 @@ public class FusionController {
     @FXML
     private void handleNewGame() {
         model.reset();
+        scoreSubmittedForCurrentGame = false;
         updateView();
         overlay.setVisible(false);
         overlay.getStyleClass().remove("overlay-visible");
@@ -135,5 +145,71 @@ public class FusionController {
         st.setAutoReverse(true);
         st.setCycleCount(2);
         st.play();
+    }
+
+    private void submitScoreAndRefreshLeaderboard(String endState) {
+        if (scoreSubmittedForCurrentGame) return;
+        scoreSubmittedForCurrentGame = true;
+
+        int finalScore = model.getScore();
+        if (!leaderboardService.isConfigured()) {
+            statusLabel.setText(endState + " - score " + finalScore
+                    + " (configure SUPABASE_URL et SUPABASE_ANON_KEY pour publier)");
+            return;
+        }
+
+        statusLabel.setText(endState + " - envoi du score...");
+
+        CompletableFuture.runAsync(() -> {
+            try {
+                FusionLeaderboardService.SubmissionResult result = leaderboardService.submitNextGuestScore(finalScore);
+                List<FusionLeaderboardService.ScoreEntry> topScores = leaderboardService.getTopScores(6);
+
+                javafx.application.Platform.runLater(() -> {
+                    updateLeaderboardLabel(topScores);
+                    statusLabel.setText(endState + " - score enregistré: "
+                            + result.guestName() + " = " + result.score());
+                });
+            } catch (Exception e) {
+                javafx.application.Platform.runLater(() -> {
+                    statusLabel.setText(endState + " - score " + finalScore + " non envoyé (" + e.getMessage() + ")");
+                });
+            }
+        });
+    }
+
+    private void refreshLeaderboardAsync() {
+        if (!leaderboardService.isConfigured()) {
+            leaderboardLabel.setText("Top 6 indisponible: configure SUPABASE_URL et SUPABASE_ANON_KEY.");
+            return;
+        }
+
+        CompletableFuture.runAsync(() -> {
+            try {
+                List<FusionLeaderboardService.ScoreEntry> topScores = leaderboardService.getTopScores(6);
+                javafx.application.Platform.runLater(() -> updateLeaderboardLabel(topScores));
+            } catch (Exception e) {
+                javafx.application.Platform.runLater(() -> leaderboardLabel.setText("Top 6 indisponible (" + e.getMessage() + ")"));
+            }
+        });
+    }
+
+    private void updateLeaderboardLabel(List<FusionLeaderboardService.ScoreEntry> topScores) {
+        if (topScores == null || topScores.isEmpty()) {
+            leaderboardLabel.setText("Top 6\nAucun score pour le moment.");
+            return;
+        }
+
+        StringBuilder builder = new StringBuilder("Top 6\n");
+        for (int i = 0; i < topScores.size(); i++) {
+            FusionLeaderboardService.ScoreEntry entry = topScores.get(i);
+            builder.append(i + 1)
+                    .append(". ")
+                    .append(entry.guestName())
+                    .append(" - ")
+                    .append(entry.score());
+            if (i < topScores.size() - 1) builder.append('\n');
+        }
+        leaderboardLabel.setText(builder.toString());
     }
 }
