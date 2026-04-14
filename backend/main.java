@@ -1,5 +1,6 @@
 package backend;
 
+import backend.sudoku.SudokuDatabaseHelper;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,6 +11,9 @@ public class main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        SudokuDatabaseHelper.initDatabase();
+        SudokuDatabaseHelper.resetSessionScore();
+
         stage.setFullScreen(true);
         stage.setFullScreenExitHint("");
         Parent root = FXMLLoader.load(getClass().getResource("/frontend/accueil.fxml"));

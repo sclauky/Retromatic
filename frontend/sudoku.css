@@ -18,6 +18,13 @@
     -fx-effect: dropshadow(gaussian, #7ECFB3, 10, 0.3, 0, 0);
 }
 
+.score-label {
+    -fx-text-fill: #F2EBE0;
+    -fx-font-size: 14px;
+    -fx-font-family: 'Impact', sans-serif;
+    -fx-letter-spacing: 2px;
+}
+
 .sudoku-subtitle {
     -fx-text-fill: #F2EBE0;
     -fx-font-size: 12px;
@@ -69,6 +76,40 @@
 .game-button:hover {
     -fx-background-color: #7ECFB3;
     -fx-text-fill: #1C1018;
+}
+
+.difficulty-select {
+    -fx-background-color: #0F0A0E;
+    -fx-text-fill: #7ECFB3;
+    -fx-font-size: 12px;
+    -fx-font-family: 'Courier New', monospace;
+    -fx-border-color: #7ECFB3;
+    -fx-border-width: 1.5px;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-padding: 2 8 2 8;
+}
+
+.difficulty-select .list-cell {
+    -fx-text-fill: #7ECFB3;
+    -fx-background-color: #0F0A0E;
+}
+
+.difficulty-select .arrow {
+    -fx-background-color: #7ECFB3;
+}
+
+.difficulty-select .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.difficulty-select .combo-box-popup .list-view {
+    -fx-background-color: #0F0A0E;
+    -fx-border-color: #7ECFB3;
+}
+
+.difficulty-select .combo-box-popup .list-cell:hover {
+    -fx-background-color: #1f2a40;
 }
 
 .btn-restart {

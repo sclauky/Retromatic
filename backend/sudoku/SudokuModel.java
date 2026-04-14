@@ -5,6 +5,7 @@ public class SudokuModel {
     private int[][] solution;  // La grille complète résolue
     private int[][] puzzle;    // La grille avec les cases vides
     private int[][] userGrid;  // Ce que le joueur a rempli
+    private String difficulty; // NOUVEAU : stocke la difficulté
 
     public SudokuModel() {
     }
@@ -23,11 +24,15 @@ public class SudokuModel {
         }
     }
 
+    // NOUVEAU : Charger avec difficulté
+    public void loadGrid(int[][] puzzle, int[][] solution, String difficulty) {
+        loadGrid(puzzle, solution);
+        this.difficulty = difficulty;
+    }
+
     // Le joueur entre un chiffre
     public boolean setNumber(int row, int col, int number) {
-        // On ne peut pas modifier les cases pré-remplies
         if (puzzle[row][col] != 0) return false;
-
         userGrid[row][col] = number;
         return true;
     }
@@ -56,4 +61,5 @@ public class SudokuModel {
     public int[][] getUserGrid() { return userGrid; }
     public int[][] getPuzzle()   { return puzzle; }
     public int[][] getSolution() { return solution; }
+    public String getDifficulty() { return difficulty; } // NOUVEAU
 }

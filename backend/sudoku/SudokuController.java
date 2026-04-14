@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
@@ -15,15 +16,21 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class SudokuController {
 
     @FXML private GridPane sudokuGrid;
     @FXML private Label statusLabel;
+    @FXML private Label scoreLabel;
+    @FXML private ComboBox<String> difficultyCombo;
 
     private SudokuModel model;
     private Label[][] cells = new Label[9][9];
     private StackPane[][] cellPanes = new StackPane[9][9];
     private Rectangle[][] cellBackgrounds = new Rectangle[9][9];
+    private final Map<String, Integer> gridProgressByDifficulty = new HashMap<>();
     private int selectedRow = -1;
     private int selectedCol = -1;
 
@@ -31,11 +38,27 @@ public class SudokuController {
     public void initialize() {
         model = new SudokuModel();
         SudokuDatabaseHelper.initDatabase();
-        int[][][] grid = SudokuDatabaseHelper.getRandomGrid();
+        updateScoreLabel();
+
+        difficultyCombo.getItems().setAll("FACILE", "MOYEN", "DIFFICILE");
+        difficultyCombo.setValue("FACILE");
+        gridProgressByDifficulty.put("FACILE", 0);
+        gridProgressByDifficulty.put("MOYEN", 0);
+        gridProgressByDifficulty.put("DIFFICILE", 0);
+        loadGridForDifficulty("FACILE", 0);
+    }
+
+    private boolean loadGridForDifficulty(String difficulty, int index) {
+        int[][][] grid = SudokuDatabaseHelper.getGridByDifficultyAndIndex(difficulty, index);
         if (grid != null) {
-            model.loadGrid(grid[0], grid[1]);
+            model.loadGrid(grid[0], grid[1], difficulty);
+            buildGrid();
+            return true;
+        } else {
+            statusLabel.setText("Toutes les grilles " + difficulty + " sont terminées.");
+            statusLabel.setStyle("-fx-text-fill: #E8472A;");
+            return false;
         }
-        buildGrid();
     }
 
     private void buildGrid() {
@@ -134,8 +157,19 @@ public class SudokuController {
         }
 
         if (model.isComplete()) {
-            statusLabel.setText("🎉 BRAVO ! Sudoku complété !");
+            String difficulty = model.getDifficulty() == null ? "FACILE" : model.getDifficulty();
+            int points = getPointsForDifficulty(difficulty);
+            SudokuDatabaseHelper.addToSessionScore(points);
+            updateScoreLabel();
+            int nextIndex = gridProgressByDifficulty.getOrDefault(difficulty, 0) + 1;
+            gridProgressByDifficulty.put(difficulty, nextIndex);
+
+            statusLabel.setText("🎉 BRAVO ! +" + points + " points - Grille suivante...");
             statusLabel.setStyle("-fx-text-fill: #7ECFB3;");
+
+            selectedRow = -1;
+            selectedCol = -1;
+            loadGridForDifficulty(difficulty, nextIndex);
         }
     }
 
@@ -172,18 +206,47 @@ public class SudokuController {
             + (col % 3 == 0 ? thickBorderSize : 1) + ";";
     }
 
+    private int getPointsForDifficulty(String difficulty) {
+        return switch (difficulty) {
+            case "MOYEN" -> 20;
+            case "DIFFICILE" -> 30;
+            default -> 10;
+        };
+    }
+
+    private void updateScoreLabel() {
+        scoreLabel.setText("SCORE: " + SudokuDatabaseHelper.getSessionScore());
+    }
+
     @FXML
     private void handleRestart() {
-        SudokuDatabaseHelper.initDatabase();
-        int[][][] grid = SudokuDatabaseHelper.getRandomGrid();
-        if (grid != null) {
-            model.loadGrid(grid[0], grid[1]);
-        }
         selectedRow = -1;
         selectedCol = -1;
         statusLabel.setText("");
         statusLabel.setStyle("");
-        buildGrid();
+
+        // Recharger la grille courante de la même difficulté
+        String currentDifficulty = model.getDifficulty();
+        if (currentDifficulty == null) currentDifficulty = "FACILE";
+        int currentIndex = gridProgressByDifficulty.getOrDefault(currentDifficulty, 0);
+        loadGridForDifficulty(currentDifficulty, currentIndex);
+    }
+
+    @FXML
+    private void handleDifficultyChange() {
+        selectedRow = -1;
+        selectedCol = -1;
+        statusLabel.setText("");
+        statusLabel.setStyle("");
+
+        String selectedDifficulty = difficultyCombo.getValue();
+        if (selectedDifficulty == null || selectedDifficulty.isBlank()) {
+            selectedDifficulty = "FACILE";
+        }
+
+        // Sur changement de difficulté, on repart de la 1re grille du niveau.
+        gridProgressByDifficulty.put(selectedDifficulty, 0);
+        loadGridForDifficulty(selectedDifficulty, 0);
     }
 
     @FXML

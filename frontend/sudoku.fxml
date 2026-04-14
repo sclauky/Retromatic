@@ -13,6 +13,11 @@
         <HBox alignment="CENTER_LEFT" styleClass="sudoku-header" spacing="20">
             <Label text="SUDOKU" styleClass="sudoku-title"/>
             <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="scoreLabel" text="SCORE: 0" styleClass="score-label"/>
+            <ComboBox fx:id="difficultyCombo"
+                      onAction="#handleDifficultyChange"
+                      promptText="Difficulté"
+                      styleClass="difficulty-select"/>
             <Button text="Accueil"
                     onAction="#handleBack"
                     styleClass="game-button"/>
