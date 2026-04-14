@@ -1,0 +1,42 @@
+/* Fond général */
+.root {
+    -fx-background-color: #0d0d1a;
+}
+
+/* Cases normales */
+.cell-bg {
+    -fx-fill: #1a1a2e;
+}
+
+.cell-label {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #F2EBE0;
+    -fx-alignment: center;
+}
+
+/* Cases pré-remplies */
+.cell-prefilled {
+    -fx-text-fill: #aaaacc !important;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+/* Boutons */
+.game-button {
+    -fx-background-color: #1a1a2e;
+    -fx-text-fill: #7ECFB3;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border-color: #7ECFB3;
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+
+.game-button:hover {
+    -fx-background-color: #7ECFB3;
+    -fx-text-fill: #0d0d1a;
+}
