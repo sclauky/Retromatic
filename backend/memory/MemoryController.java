@@ -38,11 +38,23 @@ public class MemoryController {
     private static final int CARD_H = 140;
     private static final int COLS = 4;
 
+    private java.util.Map<String, Image> cardImages = new java.util.HashMap<>();
+
     @FXML
     public void initialize() {
         model = new MemoryModel();
         try {
             backImage = new Image(getClass().getResourceAsStream("/frontend/memory_back.jpg"));
+            for (String icon : MemoryModel.ICONS) {
+    try {
+        Image img = new Image(getClass().getResourceAsStream(
+            "/frontend/memory_card/" + icon + ".jpg"));
+        cardImages.put(icon, img);
+    } catch (Exception e) {
+        cardImages.put(icon, null);
+    }
+            }
+
         } catch (Exception e) {
             backImage = null;
         }
@@ -151,6 +163,7 @@ private void drawFront(Canvas canvas, MemoryModel.Card card) {
     GraphicsContext gc = canvas.getGraphicsContext2D();
     gc.clearRect(0, 0, CARD_W, CARD_H);
 
+    // Fond carte
     if (card.matched) {
         gc.setFill(Color.web("#7ECFB3"));
     } else {
@@ -161,114 +174,27 @@ private void drawFront(Canvas canvas, MemoryModel.Card card) {
     gc.setLineWidth(2);
     gc.strokeRoundRect(2, 2, CARD_W - 4, CARD_H - 4, 16, 16);
 
-    drawIcon(gc, card.icon, CARD_W / 2.0, CARD_H / 2.0 - 10);
+    int padding = 8;
+    int nameZoneH = 22;
+    int topMargin = 10;
+    int imgSize = CARD_W - (padding * 2);  
+    int imgHeight = CARD_H - topMargin - nameZoneH - padding;
+    int imgX = padding;
+    int imgY = topMargin;
 
-    gc.setFill(card.matched ? Color.web("#1C1018") : Color.web("#7ECFB3"));
-    gc.setFont(Font.font("Courier New", 10));
-    gc.setTextAlign(TextAlignment.CENTER);
-    gc.fillText(card.icon, CARD_W / 2.0, CARD_H - 14);
-
-}
-
-    private void drawIcon(GraphicsContext gc, String icon, double cx, double cy) {
-        gc.setStroke(Color.web("#1C1018"));
-        gc.setFill(Color.web("#1C1018"));
-        gc.setLineWidth(2);
-
-        switch (icon) {
-            case "ROCKET" -> {
-                gc.setFill(Color.web("#F2EBE0"));
-                gc.fillOval(cx - 14, cy - 30, 28, 45);
-                gc.strokeOval(cx - 14, cy - 30, 28, 45);
-                gc.setFill(Color.web("#E8472A"));
-                gc.fillPolygon(new double[]{cx, cx - 14, cx + 14}, new double[]{cy - 30, cy - 10, cy - 10}, 3);
-                gc.setFill(Color.web("#F5C94E"));
-                gc.fillPolygon(new double[]{cx - 14, cx - 22, cx - 14}, new double[]{cy + 5, cy + 18, cy + 18}, 3);
-                gc.fillPolygon(new double[]{cx + 14, cx + 22, cx + 14}, new double[]{cy + 5, cy + 18, cy + 18}, 3);
-                gc.setFill(Color.web("#7ECFB3"));
-                gc.fillOval(cx - 6, cy - 8, 12, 12);
-            }
-            case "PLANET" -> {
-                gc.setFill(Color.web("#7ECFB3"));
-                gc.fillOval(cx - 20, cy - 20, 40, 40);
-                gc.strokeOval(cx - 20, cy - 20, 40, 40);
-                gc.setStroke(Color.web("#F5C94E"));
-                gc.setLineWidth(3);
-                gc.strokeOval(cx - 30, cy - 10, 60, 20);
-                gc.setStroke(Color.web("#1C1018"));
-                gc.setLineWidth(2);
-                gc.strokeOval(cx - 30, cy - 10, 60, 20);
-            }
-            case "STAR" -> {
-                double[] xs = new double[10];
-                double[] ys = new double[10];
-                for (int i = 0; i < 10; i++) {
-                    double angle = Math.PI / 2 + i * Math.PI / 5;
-                    double r = (i % 2 == 0) ? 24 : 10;
-                    xs[i] = cx + r * Math.cos(angle);
-                    ys[i] = cy - r * Math.sin(angle);
-                }
-                gc.setFill(Color.web("#F5C94E"));
-                gc.fillPolygon(xs, ys, 10);
-                gc.strokePolygon(xs, ys, 10);
-            }
-            case "SATELLITE" -> {
-                gc.setFill(Color.web("#F2EBE0"));
-                gc.fillRect(cx - 8, cy - 8, 16, 16);
-                gc.strokeRect(cx - 8, cy - 8, 16, 16);
-                gc.setFill(Color.web("#7ECFB3"));
-                gc.fillRect(cx - 28, cy - 5, 18, 10);
-                gc.strokeRect(cx - 28, cy - 5, 18, 10);
-                gc.fillRect(cx + 10, cy - 5, 18, 10);
-                gc.strokeRect(cx + 10, cy - 5, 18, 10);
-                gc.strokeLine(cx - 10, cy, cx - 28, cy);
-                gc.strokeLine(cx + 10, cy, cx + 28, cy);
-            }
-            case "MOON" -> {
-                gc.setFill(Color.web("#F5C94E"));
-                gc.fillOval(cx - 20, cy - 22, 40, 44);
-                gc.setFill(Color.web("#e29c4c"));
-                gc.fillOval(cx - 6, cy - 22, 36, 44);
-            }
-            case "COMET" -> {
-                gc.setFill(Color.web("#F2EBE0"));
-                gc.fillOval(cx + 6, cy - 8, 18, 18);
-                gc.strokeOval(cx + 6, cy - 8, 18, 18);
-                gc.setStroke(Color.web("#7ECFB3"));
-                gc.setLineWidth(2.5);
-                gc.strokeLine(cx + 6, cy, cx - 24, cy - 16);
-                gc.setLineWidth(1.5);
-                gc.strokeLine(cx + 8, cy + 4, cx - 18, cy + 10);
-                gc.setLineWidth(1);
-                gc.strokeLine(cx + 10, cy - 4, cx - 12, cy - 18);
-            }
-            case "ASTRONAUT" -> {
-                gc.setFill(Color.web("#F2EBE0"));
-                gc.fillOval(cx - 14, cy - 28, 28, 28);
-                gc.strokeOval(cx - 14, cy - 28, 28, 28);
-                gc.setFill(Color.web("#7ECFB3"));
-                gc.fillOval(cx - 8, cy - 22, 16, 16);
-                gc.setFill(Color.web("#F2EBE0"));
-                gc.fillRoundRect(cx - 16, cy + 2, 32, 26, 10, 10);
-                gc.strokeRoundRect(cx - 16, cy + 2, 32, 26, 10, 10);
-                gc.strokeLine(cx - 16, cy + 14, cx - 24, cy + 20);
-                gc.strokeLine(cx + 16, cy + 14, cx + 24, cy + 20);
-            }
-            case "UFO" -> {
-                gc.setFill(Color.web("#7ECFB3"));
-                gc.fillOval(cx - 28, cy, 56, 20);
-                gc.strokeOval(cx - 28, cy, 56, 20);
-                gc.setFill(Color.web("#F2EBE0"));
-                gc.fillOval(cx - 16, cy - 18, 32, 26);
-                gc.strokeOval(cx - 16, cy - 18, 32, 26);
-                gc.setFill(Color.web("#F5C94E"));
-                gc.fillOval(cx - 5, cy + 22, 10, 10);
-                gc.fillOval(cx - 18, cy + 18, 8, 8);
-                gc.fillOval(cx + 10, cy + 18, 8, 8);
-            }
-        }
+    Image img = cardImages.get(card.icon);
+    if (img != null && !img.isError()) {
+        gc.drawImage(img, imgX, imgY, imgSize, imgHeight);
+        gc.setStroke(card.matched ? Color.web("#1C1018") : Color.web("#7ECFB3"));
+        gc.setLineWidth(1.5);
+        gc.strokeRect(imgX, imgY, imgSize, imgHeight);
     }
 
+    gc.setFill(card.matched ? Color.web("#1C1018") : Color.web("#F2EBE0"));
+    gc.setFont(Font.font("Courier New", 9));
+    gc.setTextAlign(TextAlignment.CENTER);
+    gc.fillText(card.icon.toUpperCase(), CARD_W / 2.0, CARD_H - (nameZoneH / 2.0) + 3);
+}
     private void updateStats() {
         movesLabel.setText("COUPS : " + model.getMoves());
         pairsLabel.setText("PAIRES : " + model.getMatchedPairs() + " / " + MemoryModel.ICONS.length);

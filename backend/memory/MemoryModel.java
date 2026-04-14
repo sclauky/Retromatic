@@ -7,8 +7,8 @@ import java.util.List;
 public class MemoryModel {
 
     public static final String[] ICONS = {
-        "ROCKET", "PLANET", "STAR", "SATELLITE",
-        "MOON", "COMET", "ASTRONAUT", "UFO"
+    "First Contact", "Irene", "Josef", "The Computer Room",
+    "The GMO", "The Office", "The Swim", "Vincent"
     };
 
     public static class Card {
