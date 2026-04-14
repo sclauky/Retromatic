@@ -133,17 +133,15 @@ public class HangmanController {
         gc.setStroke(Color.web("#7ECFB3"));
 
         if (errors >= 4) {
-            // Casque d'astronaute (tête)
+            // tête
             gc.setFill(Color.web("#F2EBE0"));
             gc.fillOval(220, 100, 60, 60);
             gc.strokeOval(220, 100, 60, 60);
-            
-            // Visière
             gc.setFill(Color.web("#7ECFB3"));
             gc.fillOval(230, 115, 40, 30);
         }
         if (errors >= 5) {
-            // Corps (combinaison spatiale)
+            // Corps 
             gc.setFill(Color.web("#F2EBE0"));
             gc.fillRoundRect(230, 165, 40, 80, 10, 10);
             gc.strokeRoundRect(230, 165, 40, 80, 10, 10);

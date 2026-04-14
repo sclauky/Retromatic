@@ -1,4 +1,4 @@
-/* === FOND ET CONTENEUR PRINCIPAL === */
+/* === FOND === */
 .root-pane {
     -fx-background-color: #e29c4c;
     -fx-padding: 20px;
@@ -43,7 +43,7 @@
     -fx-text-fill: #F2EBE0;
 }
 
-/* === LABELS D'INFORMATION === */
+/* === LABELS === */
 .tries-label {
     -fx-font-family: "Courier New", monospace;
     -fx-font-size: 18px;
@@ -60,7 +60,7 @@
     min-height: 40px;
 }
 
-/* === CANVAS (ZONE DE DESSIN DU PENDU) === */
+/* === CANVAS === */
 .hangman-canvas {
     -fx-background-color: rgba(28, 16, 24, 0.5);
     -fx-border-color: #1C1018;
@@ -79,14 +79,14 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 8, 0.5, 0, 0);
 }
 
-/* === CONTENEUR DES BOUTONS LETTRES === */
+/* CONTENEUR DES BOUTONS LETTRES */
 .letter-buttons-pane {
     -fx-padding: 20px;
     -fx-alignment: center;
     max-width: 600px;
 }
 
-/* === BOUTONS LETTRES (A-Z) === */
+/* BOUTONS LETTRES  */
 .letter-button {
     -fx-background-color: #1C1018;
     -fx-text-fill: #F2EBE0;
@@ -113,21 +113,21 @@
     -fx-cursor: default;
 }
 
-/* === BOUTON LETTRE CORRECTE === */
+/* BOUTON LETTRE CORRECTE */
 .letter-correct {
     -fx-background-color: #1C1018 !important;
     -fx-text-fill: #F2EBE0 !important;
     -fx-border-color: #F2EBE0 !important;
 }
 
-/* === BOUTON LETTRE INCORRECTE === */
+/*  BOUTON LETTRE INCORRECTE  */
 .letter-wrong {
     -fx-background-color: #E8472A !important;
     -fx-text-fill: #F2EBE0 !important;
     -fx-border-color: #E8472A !important;
 }
 
-/* === BOUTON DE CONTRÔLE (REJOUER) === */
+/*  BOUTON DE CONTRÔLE REJOUER  */
 .restart-button {
     -fx-background-color: #261A22;
     -fx-text-fill: #F5C94E;
@@ -151,7 +151,7 @@
     -fx-effect: dropshadow(gaussian, rgba(245, 201, 78, 0.7), 10, 0.5, 0, 0);
 }
 
-/* === BOÎTES DE DISPOSITION === */
+/* BOÎTES */
 .top-box, .center-box, .bottom-box {
     -fx-padding: 20px;
 }

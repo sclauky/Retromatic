@@ -11,7 +11,7 @@
             styleClass="root-pane"
             stylesheets="@hangman.css">
 
-    <!-- Haut : Titre et stats -->
+    <!-- Haut -->
     <top>
         <VBox alignment="CENTER" spacing="15" styleClass="top-box">
             <HBox alignment="CENTER_LEFT" styleClass="top-header-row">
@@ -24,7 +24,7 @@
         </VBox>
     </top>
 
-    <!-- Centre : Canvas pendu + Mot à deviner -->
+    <!-- Centre -->
     <center>
         <VBox alignment="CENTER" spacing="30" styleClass="center-box">
             <Canvas fx:id="hangmanCanvas" width="400" height="400" styleClass="hangman-canvas"/>
@@ -32,7 +32,7 @@
         </VBox>
     </center>
 
-    <!-- Bas : Boutons lettres + lettres incorrectes -->
+    <!-- Bas -->
     <bottom>
         <VBox alignment="CENTER" spacing="20" styleClass="bottom-box">
             <FlowPane fx:id="letterButtons" styleClass="letter-buttons-pane"/>

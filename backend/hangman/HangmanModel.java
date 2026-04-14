@@ -71,14 +71,14 @@ public class HangmanModel {
     private void checkWin() {
         for (char c : secretWord.toCharArray()) {
             if (!correctLetters.contains(c)) {
-                return; // Il reste des lettres à trouver
+                return; 
             }
         }
         gameOver = true;
         won = true;
     }
     
-    // Obtenir le mot avec les lettres trouvées (ex: "F U _ _ E")
+    // Obtenir le mot avec les lettres trouvées 
     public String getDisplayWord() {
         StringBuilder display = new StringBuilder();
         for (char c : secretWord.toCharArray()) {

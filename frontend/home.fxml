@@ -63,7 +63,7 @@
 
     <bottom>
         <HBox alignment="CENTER" styleClass="footer">
-            <Label text="RETROMATIC © 2025" styleClass="footer-label"/>
+            <Label text="RETROMATIC © 2026" styleClass="footer-label"/>
         </HBox>
     </bottom>
 

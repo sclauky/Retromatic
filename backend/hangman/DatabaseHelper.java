@@ -50,7 +50,7 @@ public static void initDatabase() {
         return rs.getInt(1);
     }
     
-    // Ajouter des mots par défaut (thème spatial)
+    // Ajouter des mots par défaut (si base de donnée vidz)
     private static void addDefaultWords(Connection conn) throws Exception {
         String[] defaultWords = {
             "FUSEE", "PLANETE", "ETOILE", "SATELLITE",

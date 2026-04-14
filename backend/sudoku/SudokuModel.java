@@ -5,7 +5,7 @@ public class SudokuModel {
     private int[][] solution;  // La grille complète résolue
     private int[][] puzzle;    // La grille avec les cases vides
     private int[][] userGrid;  // Ce que le joueur a rempli
-    private String difficulty; // NOUVEAU : stocke la difficulté
+    private String difficulty; // stocke la difficulté
 
     public SudokuModel() {
     }
@@ -24,7 +24,7 @@ public class SudokuModel {
         }
     }
 
-    // NOUVEAU : Charger avec difficulté
+    // Charger avec difficulté
     public void loadGrid(int[][] puzzle, int[][] solution, String difficulty) {
         loadGrid(puzzle, solution);
         this.difficulty = difficulty;
@@ -57,7 +57,6 @@ public class SudokuModel {
         return puzzle[row][col] != 0;
     }
 
-    // Getters
     public int[][] getUserGrid() { return userGrid; }
     public int[][] getPuzzle()   { return puzzle; }
     public int[][] getSolution() { return solution; }
