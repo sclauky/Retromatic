@@ -8,8 +8,7 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="backend.memory.MemoryController"
             stylesheets="@memory.css"
-            styleClass="root-memory"
-            prefWidth="900" prefHeight="660">
+            styleClass="root-memory">
 
     <top>
         <HBox alignment="CENTER_LEFT" styleClass="mem-header" spacing="20">

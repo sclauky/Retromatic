@@ -49,9 +49,15 @@ public class FusionController {
 
         if (moved) {
             updateView();
-            if (model.hasWon()) statusLabel.setText("2048 ! Tu as gagné 🎉");
-            else if (!model.hasMoves()) showGameOver();
-            else statusLabel.setText("");
+            if (model.hasWon()) {
+                showOverlay("Félicitation 2048 !");
+                statusLabel.setText("2048 atteint !");
+            } else if (!model.hasMoves()) {
+                showOverlay("GAME OVER");
+                statusLabel.setText("");
+            } else {
+                statusLabel.setText("");
+            }
         }
     }
 
@@ -60,6 +66,8 @@ public class FusionController {
         model.reset();
         updateView();
         overlay.setVisible(false);
+        overlay.getStyleClass().remove("overlay-visible");
+        gameOverLabel.setText("GAME OVER");
         statusLabel.setText("Nouvelle partie !");
         javafx.application.Platform.runLater(() -> root.requestFocus());
     }
@@ -110,8 +118,11 @@ public class FusionController {
         return pane;
     }
 
-    private void showGameOver() {
-        overlay.getStyleClass().add("overlay-visible");
+    private void showOverlay(String message) {
+        gameOverLabel.setText(message);
+        if (!overlay.getStyleClass().contains("overlay-visible")) {
+            overlay.getStyleClass().add("overlay-visible");
+        }
         overlay.setVisible(true);
     }
 

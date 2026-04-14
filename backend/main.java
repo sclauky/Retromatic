@@ -13,10 +13,10 @@ public class main extends Application {
         stage.setFullScreen(true);
         stage.setFullScreenExitHint("");
         Parent root = FXMLLoader.load(getClass().getResource("/frontend/accueil.fxml"));
-        Scene scene = new Scene(root, 900, 660);
+        Scene scene = new Scene(root);
         stage.setTitle("RETROMATIC");
         stage.setScene(scene);
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.show();
     }
 

@@ -100,26 +100,34 @@
 ══════════════════════════════════════════ */
 
 .root-home {
-    -fx-background-color: #e29c4c;
+    -fx-background-color: #050707;
+    -fx-background-image: url("background_accueil/standby.jpg");
+    -fx-background-size: contain;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
 }
 
 .header {
-    -fx-background-color: #1C1018;
+    -fx-background-color: rgba(7, 10, 10, 0.80);
     -fx-padding: 18 40 18 40;
+    -fx-border-color: rgba(126, 207, 179, 0.38);
+    -fx-border-width: 0 0 1.5 0;
 }
 
 .header-logo {
-    -fx-text-fill: #F2EBE0;
+    -fx-text-fill: #e4fff2;
     -fx-font-size: 26px;
     -fx-font-family: 'Impact', sans-serif;
     -fx-letter-spacing: 7px;
+    -fx-effect: dropshadow(gaussian, rgba(124, 238, 195, 0.48), 8, 0.15, 0, 0);
 }
 
 .header-sub {
-    -fx-text-fill: #7ECFB3;
+    -fx-text-fill: #96efcd;
     -fx-font-size: 11px;
     -fx-font-family: 'Courier New', monospace;
     -fx-letter-spacing: 4px;
+    -fx-opacity: 0.86;
 }
 
 .center-wrap {
@@ -127,11 +135,11 @@
 }
 
 .section-title {
-    -fx-text-fill: #1C1018;
+    -fx-text-fill: #ccffe9;
     -fx-font-size: 12px;
     -fx-font-family: 'Courier New', monospace;
     -fx-letter-spacing: 6px;
-    -fx-opacity: 0.45;
+    -fx-opacity: 0.72;
 }
 
 .game-grid {
@@ -140,62 +148,64 @@
 
 /* Carte 1 & 3 — crème */
 .game-card {
-    -fx-background-color: #F2EBE0;
+    -fx-background-color: rgba(11, 18, 17, 0.74);
     -fx-background-radius: 28px;
-    -fx-border-color: transparent;
+    -fx-border-color: rgba(126, 207, 179, 0.40);
+    -fx-border-width: 1.5px;
     -fx-border-radius: 28px;
     -fx-padding: 36 52 36 52;
     -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, #1C1018, 14, 0.22, 0, 5);
+    -fx-effect: dropshadow(gaussian, rgba(25, 250, 188, 0.18), 18, 0.20, 0, 0);
     -fx-min-width: 300px;
     -fx-min-height: 200px;
 }
 
 .game-card:hover {
-    -fx-background-color: #FDFAF5;
-    -fx-border-color: #7ECFB3;
+    -fx-background-color: rgba(15, 26, 24, 0.88);
+    -fx-border-color: #a3ffdb;
     -fx-border-width: 2.5px;
-    -fx-effect: dropshadow(gaussian, #7ECFB3, 20, 0.35, 0, 0);
+    -fx-effect: dropshadow(gaussian, rgba(137, 255, 219, 0.52), 26, 0.42, 0, 0);
     -fx-scale-x: 1.03;
     -fx-scale-y: 1.03;
 }
 
 .card-icon {
-    -fx-fill: #7ECFB3;
-    -fx-opacity: 0.55;
+    -fx-fill: #9ffdd7;
+    -fx-opacity: 0.60;
 }
 
 .game-card:hover .card-icon {
-    -fx-fill: #E8472A;
+    -fx-fill: #d0ffe7;
     -fx-opacity: 1.0;
 }
 
 .card-title {
-    -fx-text-fill: #1C1018;
+    -fx-text-fill: #eafff4;
     -fx-font-size: 28px;
     -fx-font-family: 'Impact', sans-serif;
     -fx-letter-spacing: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(159, 253, 215, 0.32), 6, 0.15, 0, 0);
 }
 
 .card-sub {
-    -fx-text-fill: #1C1018;
+    -fx-text-fill: #bbf6dc;
     -fx-font-size: 12px;
     -fx-font-family: 'Courier New', monospace;
-    -fx-opacity: 0.45;
+    -fx-opacity: 0.86;
     -fx-letter-spacing: 2px;
 }
 
 .footer {
-    -fx-background-color: #1C1018;
+    -fx-background-color: rgba(7, 10, 10, 0.84);
     -fx-padding: 14 0 14 0;
-    -fx-border-color: #7ECFB3;
+    -fx-border-color: rgba(126, 207, 179, 0.42);
     -fx-border-width: 2 0 0 0;
 }
 
 .footer-label {
-    -fx-text-fill: #F2EBE0;
+    -fx-text-fill: #d7ffed;
     -fx-font-size: 11px;
     -fx-font-family: 'Courier New', monospace;
     -fx-letter-spacing: 3px;
-    -fx-opacity: 0.5;
+    -fx-opacity: 0.72;
 }

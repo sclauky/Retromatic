@@ -10,7 +10,6 @@
             fx:controller="backend.HomeController"
             stylesheets="@accueil.css"
             styleClass="root-home"
-            prefWidth="900" prefHeight="660"
             >
 
     <top>

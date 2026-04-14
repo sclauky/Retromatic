@@ -178,7 +178,7 @@ public class HangmanController {
     private void handleBack() throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/frontend/home.fxml"));
         Stage stage = (Stage) hangmanCanvas.getScene().getWindow();
-        stage.setScene(new Scene(root, 900, 660));
+        stage.setScene(new Scene(root));
         stage.setFullScreen(true);
         stage.setFullScreenExitHint("");
         stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);

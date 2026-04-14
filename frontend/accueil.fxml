@@ -8,13 +8,12 @@
            xmlns:fx="http://javafx.com/fxml"
            fx:controller="backend.AccueilController"
            stylesheets="@accueil.css"
-           styleClass="root-splash"
-           prefWidth="900" prefHeight="660">
+           styleClass="root-splash">
 
-    <Pane mouseTransparent="true">
-        <Circle centerX="750" centerY="100" radius="180" styleClass="deco-circle"/>
-        <Circle centerX="100" centerY="560" radius="110" styleClass="deco-circle-sm"/>
-        <Circle centerX="450" centerY="330" radius="300" styleClass="deco-ring"/>
+    <Pane fx:id="bgLayer" mouseTransparent="true">
+        <Circle fx:id="decoCircleMain" centerX="750" centerY="100" radius="180" styleClass="deco-circle"/>
+        <Circle fx:id="decoCircleSmall" centerX="100" centerY="560" radius="110" styleClass="deco-circle-sm"/>
+        <Circle fx:id="decoRing" centerX="450" centerY="330" radius="300" styleClass="deco-ring"/>
     </Pane>
 
     <VBox alignment="CENTER" spacing="28" styleClass="splash-content">
