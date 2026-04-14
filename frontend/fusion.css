@@ -114,6 +114,14 @@
     -fx-opacity: 0.7;
 }
 
+.leaderboard {
+    -fx-text-fill: #1C1018;
+    -fx-font-size: 14px;
+    -fx-font-family: 'Courier New';
+    -fx-opacity: 0.85;
+    -fx-line-spacing: 2px;
+}
+
 /* OVERLAY */
 .overlay {
     -fx-background-color: rgba(28, 16, 24, 0.75);

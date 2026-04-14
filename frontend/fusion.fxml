@@ -47,8 +47,17 @@
     </center>
 
     <bottom>
-        <Label fx:id="statusLabel" BorderPane.alignment="CENTER" alignment="CENTER"
-               styleClass="status" prefHeight="40"/>
+        <VBox alignment="CENTER" spacing="6" BorderPane.alignment="CENTER">
+            <children>
+                <Label fx:id="statusLabel" alignment="CENTER"
+                       styleClass="status" prefHeight="28"/>
+                <Label fx:id="leaderboardLabel" alignment="CENTER" textAlignment="CENTER"
+                       styleClass="leaderboard" wrapText="true"/>
+            </children>
+            <padding>
+                <Insets bottom="14"/>
+            </padding>
+        </VBox>
     </bottom>
 
 </BorderPane>
