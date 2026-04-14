@@ -1,6 +1,6 @@
 /* === FOND ET CONTENEUR PRINCIPAL === */
 .root-pane {
-    -fx-background-color: linear-gradient(to bottom, #1C1018 0%, #261A22 100%);
+    -fx-background-color: #e29c4c;
     -fx-padding: 20px;
 }
 
@@ -9,8 +9,8 @@
     -fx-font-family: "Courier New", monospace;
     -fx-font-size: 42px;
     -fx-font-weight: bold;
-    -fx-text-fill: #F5C94E;
-    -fx-effect: dropshadow(gaussian, rgba(245, 201, 78, 0.6), 10, 0.5, 0, 0);
+    -fx-text-fill: #1C1018;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0, 0);
 }
 
 .top-header-row {
@@ -20,11 +20,11 @@
 
 .btn-home-hangman {
     -fx-background-color: transparent;
-    -fx-text-fill: #F5C94E;
+    -fx-text-fill: #1C1018;
     -fx-font-family: "Courier New", monospace;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-border-color: #F5C94E;
+    -fx-border-color: #1C1018;
     -fx-border-width: 2px;
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;
@@ -33,13 +33,13 @@
 }
 
 .btn-home-hangman:hover {
-    -fx-background-color: #F5C94E;
-    -fx-text-fill: #1C1018;
+    -fx-background-color: #1C1018;
+    -fx-text-fill: #F2EBE0;
 }
 
 .btn-home-hangman:pressed {
-    -fx-background-color: #E8472A;
-    -fx-border-color: #E8472A;
+    -fx-background-color: #C73320;
+    -fx-border-color: #C73320;
     -fx-text-fill: #F2EBE0;
 }
 
@@ -47,7 +47,7 @@
 .tries-label {
     -fx-font-family: "Courier New", monospace;
     -fx-font-size: 18px;
-    -fx-text-fill: #F2EBE0;
+    -fx-text-fill: #1C1018;
     -fx-padding: 10px;
 }
 
@@ -55,7 +55,7 @@
     -fx-font-family: "Courier New", monospace;
     -fx-font-size: 20px;
     -fx-font-weight: bold;
-    -fx-text-fill: #7ECFB3;
+    -fx-text-fill: #1C1018;
     -fx-padding: 15px;
     min-height: 40px;
 }
@@ -63,7 +63,7 @@
 /* === CANVAS (ZONE DE DESSIN DU PENDU) === */
 .hangman-canvas {
     -fx-background-color: rgba(28, 16, 24, 0.5);
-    -fx-border-color: #7ECFB3;
+    -fx-border-color: #1C1018;
     -fx-border-width: 2px;
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
@@ -74,9 +74,9 @@
     -fx-font-family: "Courier New", monospace;
     -fx-font-size: 48px;
     -fx-font-weight: bold;
-    -fx-text-fill: #F2EBE0;
+    -fx-text-fill: #1C1018;
     -fx-letter-spacing: 8px;
-    -fx-effect: dropshadow(gaussian, rgba(126, 207, 179, 0.4), 8, 0.5, 0, 0);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 8, 0.5, 0, 0);
 }
 
 /* === CONTENEUR DES BOUTONS LETTRES === */
@@ -88,12 +88,12 @@
 
 /* === BOUTONS LETTRES (A-Z) === */
 .letter-button {
-    -fx-background-color: #261A22;
+    -fx-background-color: #1C1018;
     -fx-text-fill: #F2EBE0;
     -fx-font-family: "Courier New", monospace;
     -fx-font-size: 18px;
     -fx-font-weight: bold;
-    -fx-border-color: #7ECFB3;
+    -fx-border-color: #1C1018;
     -fx-border-width: 2px;
     -fx-border-radius: 8px;
     -fx-background-radius: 8px;
@@ -102,10 +102,10 @@
 }
 
 .letter-button:hover {
-    -fx-background-color: #3a2832;
+    -fx-background-color: #E8472A;
     -fx-scale-x: 1.05;
     -fx-scale-y: 1.05;
-    -fx-effect: dropshadow(gaussian, rgba(126, 207, 179, 0.6), 8, 0.5, 0, 0);
+    -fx-effect: dropshadow(gaussian, rgba(232, 71, 42, 0.6), 8, 0.5, 0, 0);
 }
 
 .letter-button:disabled {
@@ -115,9 +115,9 @@
 
 /* === BOUTON LETTRE CORRECTE === */
 .letter-correct {
-    -fx-background-color: #7ECFB3 !important;
-    -fx-text-fill: #1C1018 !important;
-    -fx-border-color: #7ECFB3 !important;
+    -fx-background-color: #1C1018 !important;
+    -fx-text-fill: #F2EBE0 !important;
+    -fx-border-color: #F2EBE0 !important;
 }
 
 /* === BOUTON LETTRE INCORRECTE === */

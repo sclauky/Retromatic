@@ -1,42 +1,91 @@
-/* Fond général */
+/* === MEMORY STYLE === */
 .root {
-    -fx-background-color: #0d0d1a;
+    -fx-background-color: #1C1018;
+}
+
+.sudoku-header {
+    -fx-background-color: #0F0A0E;
+    -fx-padding: 14 30 14 30;
+    -fx-border-color: #7ECFB3;
+    -fx-border-width: 0 0 2 0;
+}
+
+.sudoku-title {
+    -fx-text-fill: #7ECFB3;
+    -fx-font-size: 22px;
+    -fx-font-family: 'Impact', sans-serif;
+    -fx-letter-spacing: 7px;
+    -fx-effect: dropshadow(gaussian, #7ECFB3, 10, 0.3, 0, 0);
+}
+
+.sudoku-subtitle {
+    -fx-text-fill: #F2EBE0;
+    -fx-font-size: 12px;
+    -fx-font-family: 'Courier New', monospace;
+    -fx-letter-spacing: 2px;
+}
+
+.sudoku-footer {
+    -fx-background-color: #0F0A0E;
+    -fx-padding: 14 0 14 0;
+    -fx-border-color: #7ECFB3;
+    -fx-border-width: 2 0 0 0;
 }
 
 /* Cases normales */
 .cell-bg {
-    -fx-fill: #1a1a2e;
+    -fx-fill: #0F0A0E;
 }
 
 .cell-label {
     -fx-font-size: 22px;
     -fx-font-weight: bold;
-    -fx-text-fill: #F2EBE0;
+    -fx-text-fill: #7ECFB3;
     -fx-alignment: center;
 }
 
 /* Cases pré-remplies */
 .cell-prefilled {
-    -fx-text-fill: #aaaacc !important;
+    -fx-text-fill: #F2EBE0 !important;
     -fx-font-size: 22px;
     -fx-font-weight: bold;
 }
 
 /* Boutons */
 .game-button {
-    -fx-background-color: #1a1a2e;
+    -fx-background-color: transparent;
     -fx-text-fill: #7ECFB3;
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-font-family: 'Impact', sans-serif;
+    -fx-letter-spacing: 2px;
     -fx-border-color: #7ECFB3;
-    -fx-border-width: 2px;
-    -fx-border-radius: 8px;
-    -fx-background-radius: 8px;
-    -fx-padding: 10 20;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-padding: 6 16 6 16;
     -fx-cursor: hand;
 }
 
 .game-button:hover {
     -fx-background-color: #7ECFB3;
-    -fx-text-fill: #0d0d1a;
+    -fx-text-fill: #1C1018;
+}
+
+.btn-restart {
+    -fx-background-color: transparent;
+    -fx-text-fill: #7ECFB3;
+    -fx-font-size: 12px;
+    -fx-font-family: 'Impact', sans-serif;
+    -fx-letter-spacing: 2px;
+    -fx-border-color: #7ECFB3;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-padding: 6 16 6 16;
+    -fx-cursor: hand;
+}
+
+.btn-restart:hover {
+    -fx-background-color: #7ECFB3;
+    -fx-text-fill: #1C1018;
 }

@@ -47,7 +47,7 @@ public class SudokuModel {
         return true;
     }
 
-    // Savoir si une case est pré-remplie (non modifiable)
+    // Savoir si une case est pré-remplie 
     public boolean isPreFilled(int row, int col) {
         return puzzle[row][col] != 0;
     }
