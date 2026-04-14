@@ -15,3 +15,5 @@ out/
 
 # Database
 *.db
+
+*/lib/
