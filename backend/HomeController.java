@@ -51,7 +51,6 @@ public class HomeController {
         stage.setScene(new Scene(root));
         stage.setFullScreen(true);
         stage.setFullScreenExitHint("");
-        stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
     }
 
     @FXML
@@ -70,6 +69,5 @@ private void openSudoku() throws Exception {
     stage.setScene(new Scene(root, 900, 660));
     stage.setFullScreen(true);
     stage.setFullScreenExitHint("");
-    stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
 }
 }
