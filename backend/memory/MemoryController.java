@@ -163,7 +163,6 @@ private void drawFront(Canvas canvas, MemoryModel.Card card) {
     GraphicsContext gc = canvas.getGraphicsContext2D();
     gc.clearRect(0, 0, CARD_W, CARD_H);
 
-    // Fond carte
     if (card.matched) {
         gc.setFill(Color.web("#7ECFB3"));
     } else {

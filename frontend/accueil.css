@@ -1,14 +1,5 @@
-/* ============================================
-   RETROMATIC — accueil.css
-   Thème : Space Age Atompunk
-   BG : #e29c4c ambre / crème #F2EBE0 /
-   menthe #7ECFB3 / rouge #E8472A /
-   jaune #F5C94E / noir #1C1018
-   ============================================ */
 
-/* ══════════════════════════════════════════
-   SPLASH SCREEN
-══════════════════════════════════════════ */
+/* SPLASH SCREEN */
 
 .root-splash {
     -fx-background-color: #f48429;
@@ -95,9 +86,7 @@
     -fx-scale-y: 0.97;
 }
 
-/* ══════════════════════════════════════════
-   HOME — MENU PRINCIPAL
-══════════════════════════════════════════ */
+/* HOME */
 
 .root-home {
     -fx-background-color: #050707;
