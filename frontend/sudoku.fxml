@@ -41,7 +41,7 @@
     <!-- BAS -->
     <bottom>
         <HBox alignment="CENTER" styleClass="sudoku-footer" spacing="0">
-            <Button text="NOUVELLE PARTIE"
+            <Button text="RESET"
                     onAction="#handleRestart"
                     styleClass="btn-restart"/>
         </HBox>
